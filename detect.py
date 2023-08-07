@@ -17,13 +17,13 @@ def camera_setup():
     return camera
 
 def classify(model, camera):
-    if os.path.isfile("/home/michaelhu1/Desktop/image.jpg"):
-        os.remove("/home/michaelhu1/Desktop/image.jpg")
-        
+      
     camera.start()
     sleep(5)
     camera.capture_file("/home/michaelhu1/Desktop/image.jpg")
-    print(model.predict("/home/michaelhu1/Desktop/image.jpg",confidence = 40, overlap = 30).json())
+    return model.predict("/home/michaelhu1/Desktop/image.jpg",confidence = 40, overlap = 30).json()
+    
+def clear_image():
     if os.path.isfile("/home/michaelhu1/Desktop/image.jpg"):
         os.remove("/home/michaelhu1/Desktop/image.jpg")
 
