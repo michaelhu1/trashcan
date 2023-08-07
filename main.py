@@ -7,7 +7,10 @@ camera = camera_setup()
 clear_image()
 
 result =  classify(model,camera)
-prediction = result["predictions"][0]
-print(prediction["class"])
+if len(result["predictions"]) == 0:
+    print("Error: Nothing detected")
+else:
+    prediction = result["predictions"][0]
+    print(prediction["class"])
 
 clear_image()
