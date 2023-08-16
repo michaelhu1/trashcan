@@ -1,12 +1,16 @@
 import RPi.GPIO as GPIO
 import time
 
-def ultrasonic(echopin, trigpin):
+def ultrasonic_setup(echopin, trigpin):
     GPIO.setmode(GPIO.BCM)
     ECHO = echopin
     TRIG = trigpin
     GPIO.setup(ECHO,GPIO.IN)
     GPIO.setup(TRIG,GPIO.OUT)
+
+def ultrasonic_ping(echopin, trigpin):
+    ECHO = echopin
+    TRIG = trigpin
     GPIO.output(TRIG, GPIO.LOW) 
     time.sleep(0.000002) 
     GPIO.output(TRIG, GPIO.HIGH)
@@ -18,3 +22,4 @@ def ultrasonic(echopin, trigpin):
         return_time = time.time() 
     pulse_duration = return_time - start_time 
     distance = pulse_duration * 0.034/2
+    return distance
