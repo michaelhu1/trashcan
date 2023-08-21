@@ -6,7 +6,7 @@ def update_writing():
     writing.set("World")
     app.after(200, update_writing)
 
-app = App(height=480, width=800, bgcolor="black")
+app = App(height=480, width=800, bg="black")
 
 writing = Text(app, text="One piece of trash at a time", color="red", size=110)
 
