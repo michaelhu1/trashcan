@@ -5,7 +5,7 @@ pygame.init()
 screen = pygame.display.set_mode((800,480))
 clock = pygame.time.Clock()
 running = True
-plastic_bottle = pygame.image.load("download.jpg")
+plastic_bottle = pygame.image.load("plastic.jpg")
 can = pygame.image.load("can.jpg")
 paper = pygame.image.load("paper.jpg")
 fail = pygame.image.load("fail.jpg")
