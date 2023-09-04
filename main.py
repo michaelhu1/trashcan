@@ -27,9 +27,11 @@ displaythread.start()
 result =  classify(model,camera)
 if len(result["predictions"]) == 0:
     print("Error: Nothing detected")
+    prediction = "Fail"
 else:
-    prediction = result["predictions"][0]
-    print(prediction["class"])      
+    prediction_object = result["predictions"][0]
+    prediction = prediction_object["class"]
+    print(prediction)      
 clear_image()
     #openbin(prediction)
     #code for pusher push trash to correct bin

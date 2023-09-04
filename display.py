@@ -19,20 +19,21 @@ class Display:
 
     def display(self,prediction):
         self.screen.fill((255,255,255))
-        if(prediction == "plastic"):
+        if(prediction == "Plastic"):
             self.screen.blit(self.text_plastic,(((800 - self.text_plastic.get_width())/2),((480 - self.plastic_bottle.get_height())/2)-50)) 
             self.screen.blit(self.plastic_bottle,(((800 - self.plastic_bottle.get_width())/2),((480 - self.plastic_bottle.get_height())/2)))
-        elif (prediction == "can"):
+        elif (prediction == "Can"):
             self.screen.blit(self.text_can,(((800 - self.text_can.get_width())/2),((480 - self.can.get_height())/2)-50)) 
             self.screen.blit(self.can,(((800 - self.can.get_width())/2),((480 - self.can.get_height())/2)))
-        elif (prediction == "paper"):
+        elif (prediction == "Paper"):
             self.screen.blit(self.text_paper,(((800 - self.text_paper.get_width())/2),((480 - self.paper.get_height())/2)-50)) 
             self.screen.blit(self.paper,(((800 - self.paper.get_width())/2),((480 - self.paper.get_height())/2)))
-        elif(prediction == "fail"):
+        elif(prediction == "Fail"):
             self.screen.blit(self.text_fail,(((800 - self.text_fail.get_width())/2),((480 - self.fail.get_height())/2)-50)) 
             self.screen.blit(self.fail,(((800 - self.fail.get_width())/2),((480 - self.fail.get_height())/2)))
         
     def main(self):
+        global prediction
         self.init()
         prediction = ''
         while self.running:
@@ -43,13 +44,13 @@ class Display:
             
             keys = pygame.key.get_pressed()
             if keys[pygame.K_a]:
-                prediction = "plastic"
+                prediction = "Plastic"
             if keys[pygame.K_s]:
-                prediction = "can"
+                prediction = "Can"
             if keys[pygame.K_d]:
-                prediction = "paper"
+                prediction = "Paper"
             if keys[pygame.K_f]:
-                prediction = "fail"
+                prediction = "Fail"
             self.display(prediction)
             pygame.display.flip()
 
