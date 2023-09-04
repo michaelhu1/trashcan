@@ -3,7 +3,7 @@ from sensors import *
 from servos import *
 from display import *
 from threading import Thread
-
+prediction = "Fail"
 display = Display()
 displaythread = Thread(target = display.main)
 is_person = False
