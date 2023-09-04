@@ -1,57 +1,58 @@
 import pygame
+class Display:
+    def __init__(self):
+        self.running = True
+    def init(self):
+        pygame.init()
+        self.screen = pygame.display.set_mode((800,480))
+        self.clock = pygame.time.Clock()
+        self.running = True
+        self.plastic_bottle = pygame.image.load("plastic.jpg")
+        self.can = pygame.image.load("can.jpg")
+        self.paper = pygame.image.load("paper.jpg")
+        self.fail = pygame.image.load("fail.jpg")
+        self.font = pygame.font.SysFont("Arial Black",25)
+        self.text_plastic = self.font.render("Plastic",True,(0,0,0))
+        self.text_can = self.font.render("Can",True,(0,0,0))
+        self.text_paper = self.font.render("Paper",True,(0,0,0))
+        self.text_fail = self.font.render("Unidentifiable",True,(0,0,0))
 
-pygame.init()
+    def display(self,prediction):
+        self.screen.fill("white")
+        if(prediction == "plastic"):
+            self.screen.blit(self.text_plastic,(((800 - self.text_plastic.get_width())/2),((480 - self.plastic_bottle.get_height())/2)-50)) 
+            self.screen.blit(self.plastic_bottle,(((800 - self.plastic_bottle.get_width())/2),((480 - self.plastic_bottle.get_height())/2)))
+        elif (prediction == "can"):
+            self.screen.blit(self.text_can,(((800 - self.text_can.get_width())/2),((480 - self.can.get_height())/2)-50)) 
+            self.screen.blit(self.can,(((800 - self.can.get_width())/2),((480 - self.can.get_height())/2)))
+        elif (prediction == "paper"):
+            self.screen.blit(self.text_paper,(((800 - self.text_paper.get_width())/2),((480 - self.paper.get_height())/2)-50)) 
+            self.screen.blit(self.paper,(((800 - self.paper.get_width())/2),((480 - self.paper.get_height())/2)))
+        elif(prediction == "fail"):
+            self.screen.blit(self.text_fail,(((800 - self.text_fail.get_width())/2),((480 - self.fail.get_height())/2)-50)) 
+            self.screen.blit(self.fail,(((800 - self.fail.get_width())/2),((480 - self.fail.get_height())/2)))
+        
+    def main(self):
+        self.init()
+        prediction = ''
+        while running:
+            
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    running = False
+            
+            keys = pygame.key.get_pressed()
+            if keys[pygame.K_a]:
+                prediction = "plastic"
+            if keys[pygame.K_s]:
+                prediction = "can"
+            if keys[pygame.K_d]:
+                prediction = "paper"
+            if keys[pygame.K_f]:
+                prediction = "fail"
+            self.display(prediction)
+            pygame.display.flip()
 
-screen = pygame.display.set_mode((800,480))
-clock = pygame.time.Clock()
-running = True
-plastic_bottle = pygame.image.load("plastic.jpg")
-can = pygame.image.load("can.jpg")
-paper = pygame.image.load("paper.jpg")
-fail = pygame.image.load("fail.jpg")
-font = pygame.font.SysFont("Arial Black",25)
-text_plastic = font.render("Plastic",True,(0,0,0))
-text_can = font.render("Can",True,(0,0,0))
-text_paper = font.render("Paper",True,(0,0,0))
-text_fail = font.render("Unidentifiable",True,(0,0,0))
+            self.clock.tick(60)
 
-
-def display(prediction):
-    screen.fill("white")
-    if(prediction == "plastic"):
-        screen.blit(text_plastic,(((800 - text_plastic.get_width())/2),((480 - plastic_bottle.get_height())/2)-50)) 
-        screen.blit(plastic_bottle,(((800 - plastic_bottle.get_width())/2),((480 - plastic_bottle.get_height())/2)))
-    elif (prediction == "can"):
-        screen.blit(text_can,(((800 - text_can.get_width())/2),((480 - can.get_height())/2)-50)) 
-        screen.blit(can,(((800 - can.get_width())/2),((480 - can.get_height())/2)))
-    elif (prediction == "paper"):
-        screen.blit(text_paper,(((800 - text_paper.get_width())/2),((480 - paper.get_height())/2)-50)) 
-        screen.blit(paper,(((800 - paper.get_width())/2),((480 - paper.get_height())/2)))
-    elif(prediction == "fail"):
-        screen.blit(text_fail,(((800 - text_fail.get_width())/2),((480 - fail.get_height())/2)-50)) 
-        screen.blit(fail,(((800 - fail.get_width())/2),((480 - fail.get_height())/2)))
-    
-    
-prediction = ''
-while running:
-    
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-
-    
-    keys = pygame.key.get_pressed()
-    if keys[pygame.K_a]:
-        prediction = "plastic"
-    if keys[pygame.K_s]:
-        prediction = "can"
-    if keys[pygame.K_d]:
-        prediction = "paper"
-    if keys[pygame.K_f]:
-        prediction = "fail"
-    display(prediction)
-    pygame.display.flip()
-
-    clock.tick(60)
-
-pygame.quit()
+        pygame.quit()
