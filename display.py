@@ -35,11 +35,11 @@ class Display:
     def main(self):
         self.init()
         prediction = ''
-        while running:
+        while self.running:
             
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    running = False
+                    self.running = False
             
             keys = pygame.key.get_pressed()
             if keys[pygame.K_a]:
