@@ -3,8 +3,12 @@ from sensors import *
 from servos import *
 from display import *
 from threading import Thread
-prediction = "Fail"
-display = Display()
+class Prediction:
+    def __init__(self):
+        self.prediction = ''
+
+prediction = Prediction()
+display = Display(prediction)
 displaythread = Thread(target = display.main)
 is_person = False
 
@@ -27,11 +31,11 @@ displaythread.start()
 result =  classify(model,camera)
 if len(result["predictions"]) == 0:
     print("Error: Nothing detected")
-    prediction = "Fail"
+    prediction.prediction = "Fail"
 else:
     prediction_object = result["predictions"][0]
-    prediction = prediction_object["class"]
-    print(prediction)      
+    prediction.prediction = prediction_object["class"]
+    print(prediction.prediction)      
 clear_image()
     #openbin(prediction)
     #code for pusher push trash to correct bin

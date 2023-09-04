@@ -1,7 +1,8 @@
 import pygame
 class Display:
-    def __init__(self):
+    def __init__(self,prediction):
         self.running = True
+        self.prediction = prediction
     def init(self):
         pygame.init()
         self.screen = pygame.display.set_mode((800,480))
@@ -33,25 +34,23 @@ class Display:
             self.screen.blit(self.fail,(((800 - self.fail.get_width())/2),((480 - self.fail.get_height())/2)))
         
     def main(self):
-        global prediction
         self.init()
-        prediction = ''
         while self.running:
-            print(prediction)
+            print(self.prediction.prediction)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
             
             keys = pygame.key.get_pressed()
             if keys[pygame.K_a]:
-                prediction = "Plastic"
+                self.prediction.prediction = "Plastic"
             if keys[pygame.K_s]:
-                prediction = "Can"
+                self.prediction.prediction = "Can"
             if keys[pygame.K_d]:
-                prediction = "Paper"
+                self.prediction.prediction = "Paper"
             if keys[pygame.K_f]:
-                prediction = "Fail"
-            self.display(prediction)
+                self.prediction.prediction = "Fail"
+            self.display(self.prediction.prediction)
             pygame.display.flip()
 
             self.clock.tick(60)
