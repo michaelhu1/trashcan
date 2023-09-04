@@ -18,7 +18,7 @@ class Display:
         self.text_fail = self.font.render("Unidentifiable",True,(0,0,0))
 
     def display(self,prediction):
-        self.screen.fill("white")
+        self.screen.fill((255,255,255))
         if(prediction == "plastic"):
             self.screen.blit(self.text_plastic,(((800 - self.text_plastic.get_width())/2),((480 - self.plastic_bottle.get_height())/2)-50)) 
             self.screen.blit(self.plastic_bottle,(((800 - self.plastic_bottle.get_width())/2),((480 - self.plastic_bottle.get_height())/2)))
