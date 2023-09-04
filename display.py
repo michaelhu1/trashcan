@@ -36,7 +36,6 @@ class Display:
     def main(self):
         self.init()
         while self.running:
-            print(self.prediction.prediction)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
