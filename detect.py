@@ -5,7 +5,7 @@ from time import sleep
 
 
 def model_setup():
-    rf = Roboflow(api_key="nRKJI75lSbTjbJv55RPY")
+    rf = Roboflow(api_key="ROBOFLOW_API_KEY")
     project = rf.workspace().project("classify-trash-3")
     model = project.version(9).model
     return model
